@@ -1,30 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Portfolio website is ready!");
+  console.log("Portfolio loaded successfully!");
 
-    const navLinks = document.querySelectorAll("nav ul li a");
-    navLinks.forEach(link => {
-        link.addEventListener("click", event => {
-            event.preventDefault();
-            const targetId = event.target.getAttribute("href").substring(1);
-            const targetSection = document.getElementById(targetId);
+  const navLinks = document.querySelectorAll("nav ul li a");
 
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop - 50, 
-                    behavior: "smooth"
-                });
-            }
-        });
+  navLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
+  });
 
-  
-    const projects = document.querySelectorAll(".project");
-    projects.forEach(project => {
-        project.addEventListener("mouseenter", () => {
-            project.style.transform = "translateY(-5px)";
-        });
-        project.addEventListener("mouseleave", () => {
-            project.style.transform = "translateY(0)";
-        });
+  const projects = document.querySelectorAll(".project");
+  projects.forEach(item => {
+    item.addEventListener("mouseenter", () => {
+      item.style.transform = "scale(1.02)";
     });
+    item.addEventListener("mouseleave", () => {
+      item.style.transform = "scale(1)";
+    });
+  });
 });
